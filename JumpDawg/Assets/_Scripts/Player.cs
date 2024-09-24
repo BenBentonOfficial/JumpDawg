@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         groundLayer = LayerMask.GetMask("Ground");
+
     }
     
 }
