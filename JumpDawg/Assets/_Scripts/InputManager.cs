@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,15 +7,19 @@ public class InputManager : MonoBehaviour
 
     [Header("Input Actions")] 
     [SerializeField] private InputActionReference movement;
-
-    [SerializeField] private InputActionReference jump;
-    [SerializeField] private InputActionReference dash;
+    //[SerializeField] private InputActionReference jump;
+    //[SerializeField] private InputActionReference dash;
     //[SerializeField] private InputActionReference ability;
-    
-    public Action jumpAction;
-    public Action jumpActionCancel;
-    public Action dashAction;
+
+    //public Action jumpAction;
+    //public Action jumpActionCancel;
+    //public Action dashAction;
     //public Action abilityAction;
+
+    public GameAction Jump;
+    public GameAction Dash;
+
+    private float inputConsumeTimer;
 
     private void Awake()
     {
@@ -27,10 +30,22 @@ public class InputManager : MonoBehaviour
         }
 
         instance = this;
+        
+        Jump.Setup(0.1f);
+        Dash.Setup(0.1f);
+    }
 
-        jump.action.performed += Jump;
-        jump.action.canceled += JumpCancel;
-        dash.action.performed += Dash;
+    private void Update()
+    {
+        inputConsumeTimer -= Time.deltaTime;
+
+        if (inputConsumeTimer <= 0)
+        {
+            Jump.Consume();
+            Dash.Consume();
+        }
+
+        Debug.Log(MovementInput());
     }
 
     public static Vector2 MovementInput()
@@ -38,18 +53,20 @@ public class InputManager : MonoBehaviour
         return instance.movement.action.ReadValue<Vector2>();
     }
 
-    private void Jump(InputAction.CallbackContext context)
-    {
-        jumpAction?.Invoke();
-    }
+    public void SetInputConsumeTimer(float time) => inputConsumeTimer = time;
 
-    private void JumpCancel(InputAction.CallbackContext context)
-    {
-        jumpActionCancel?.Invoke();
-    }
-
-    private void Dash(InputAction.CallbackContext context)
-    {
-        dashAction?.Invoke();
-    }
+    // private void Jump()
+    // {
+    //     jumpAction?.Invoke();
+    // }
+    //
+    // private void JumpCancel()
+    // {
+    //     jumpActionCancel?.Invoke();
+    // }
+    //
+    // private void Dash()
+    // {
+    //     dashAction?.Invoke();
+    // }
 }

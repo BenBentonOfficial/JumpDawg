@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class PlayerIdleState : MonoBehaviour
+public class PlayerIdleState : PlayerState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public PlayerIdleState(PlayerStateMachine.EPlayerState key, Player entity, Rigidbody2D rb, Animator anim) : base(key, entity, rb, anim)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EnterState()
     {
-        
+        player.ZeroVelocity();
+    }
+
+    public override void ExitState()
+    {
+        base.ExitState();
+    }
+    
+    public override PlayerStateMachine.EPlayerState GetNextState()
+    {
+        if (InputManager.MovementInput().magnitude > 0)
+        {
+            return PlayerStateMachine.EPlayerState.Move;
+        }
+
+        return StateKey;
     }
 }

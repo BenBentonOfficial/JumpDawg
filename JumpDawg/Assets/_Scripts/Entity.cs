@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
     public float JumpForce => jumpForce;
     public int FacingDir => facingDir;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour
     public void ZeroVelocity() => _rb.linearVelocity = Vector2.zero;
 
     public void SetVelocity(Vector2 newVelocity) => _rb.linearVelocity = newVelocity;
-    public void SetVelcityX(float newXVelocity) => _rb.linearVelocity = new Vector2(newXVelocity, _rb.linearVelocityY);
+    public void SetVelocityX(float newXVelocity) => _rb.linearVelocity = new Vector2(newXVelocity, _rb.linearVelocityY);
     public void SetVelocityY(float newYVelocity) => _rb.linearVelocity = new Vector2(_rb.linearVelocityX, newYVelocity);
     public Vector2 Velocity() => _rb.linearVelocity;
 

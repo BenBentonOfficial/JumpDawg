@@ -36,7 +36,7 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
    {
       if (!IsTransitioningState && NextStateKey.Equals(CurrentState.StateKey))
       {
-         CurrentState.UpdateState();
+         CurrentState.PhysicsUpdate();
       }
    }
 

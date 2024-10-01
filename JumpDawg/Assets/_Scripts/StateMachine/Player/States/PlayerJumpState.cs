@@ -1,16 +1,38 @@
 using UnityEngine;
 
-public class PlayerJumpState : MonoBehaviour
+public class PlayerJumpState : State<PlayerStateMachine.EPlayerState>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public PlayerJumpState(PlayerStateMachine.EPlayerState key, Entity entity, Rigidbody2D rb, Animator anim) : base(key, entity, rb, anim)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EnterState()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void ExitState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void UpdateState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override PlayerStateMachine.EPlayerState GetNextState()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AnimationFinishTrigger()
+    {
+        throw new System.NotImplementedException();
     }
 }
