@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerState
 
     public override void EnterState()
     {
+        base.EnterState();
         player.ZeroVelocity();
     }
 
@@ -19,10 +20,11 @@ public class PlayerIdleState : PlayerState
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
         if (InputManager.MovementInput().magnitude > 0)
-        {
             return PlayerStateMachine.EPlayerState.Move;
-        }
 
+        if (InputManager.instance.Jump.Queued)
+            return PlayerStateMachine.EPlayerState.Jump;
+        
         return StateKey;
     }
 }

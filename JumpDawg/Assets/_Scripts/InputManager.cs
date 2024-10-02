@@ -7,14 +7,6 @@ public class InputManager : MonoBehaviour
 
     [Header("Input Actions")] 
     [SerializeField] private InputActionReference movement;
-    //[SerializeField] private InputActionReference jump;
-    //[SerializeField] private InputActionReference dash;
-    //[SerializeField] private InputActionReference ability;
-
-    //public Action jumpAction;
-    //public Action jumpActionCancel;
-    //public Action dashAction;
-    //public Action abilityAction;
 
     public GameAction Jump;
     public GameAction Dash;
@@ -44,29 +36,10 @@ public class InputManager : MonoBehaviour
             Jump.Consume();
             Dash.Consume();
         }
-
-        Debug.Log(MovementInput());
     }
 
-    public static Vector2 MovementInput()
-    {
-        return instance.movement.action.ReadValue<Vector2>();
-    }
+    public static Vector2 MovementInput() => instance.movement.action.ReadValue<Vector2>();
 
     public void SetInputConsumeTimer(float time) => inputConsumeTimer = time;
-
-    // private void Jump()
-    // {
-    //     jumpAction?.Invoke();
-    // }
-    //
-    // private void JumpCancel()
-    // {
-    //     jumpActionCancel?.Invoke();
-    // }
-    //
-    // private void Dash()
-    // {
-    //     dashAction?.Invoke();
-    // }
+    
 }

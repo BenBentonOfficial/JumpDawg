@@ -20,6 +20,7 @@ public class PlayerMoveState : PlayerState
     public override void UpdateState()
     {
         player.SetVelocityX(InputManager.MovementInput().x * 10);
+        player.CheckFlip();
     }
 
     public override void PhysicsUpdate()
@@ -30,9 +31,11 @@ public class PlayerMoveState : PlayerState
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
         if (InputManager.MovementInput().magnitude <= 0)
-        {
             return PlayerStateMachine.EPlayerState.Idle;
-        }
+        
+
+        if (InputManager.instance.Jump.Queued)
+            return PlayerStateMachine.EPlayerState.Jump;
 
         return StateKey;
     }
