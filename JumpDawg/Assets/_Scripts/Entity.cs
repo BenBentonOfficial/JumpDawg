@@ -16,7 +16,7 @@ public class Entity : MonoBehaviour
 
     [SerializeField] protected float moveSpeed;
     public float MoveSpeed => moveSpeed;
-    
+
     public bool touchingGround => Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, groundLayer);
     public Animator Animator => _animator;
     public float JumpForce => jumpForce;

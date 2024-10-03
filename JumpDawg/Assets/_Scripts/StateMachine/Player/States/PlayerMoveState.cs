@@ -32,6 +32,9 @@ public class PlayerMoveState : PlayerState
         if (InputManager.instance.Jump.Queued)
             return PlayerStateMachine.EPlayerState.Jump;
 
+        if (!player.touchingGround)
+            return PlayerStateMachine.EPlayerState.Fall;
+
         return StateKey;
     }
 
