@@ -19,7 +19,7 @@ public class PlayerIdleState : PlayerState
     
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
-        if (InputManager.MovementInput().magnitude > 0)
+        if (Mathf.Abs(InputManager.MovementInput()) > 0)
             return PlayerStateMachine.EPlayerState.Move;
 
         if (InputManager.instance.Jump.Queued)

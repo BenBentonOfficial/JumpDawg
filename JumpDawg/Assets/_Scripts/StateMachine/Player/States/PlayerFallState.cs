@@ -30,7 +30,7 @@ public class PlayerFallState : PlayerState
     public override void UpdateState()
     {
         base.UpdateState();
-        player.SetVelocityX((player.MoveSpeed * 0.8f) * InputManager.MovementInput().x);
+        player.SetVelocityX((player.MoveSpeed * 0.8f) * InputManager.MovementInput());
 
         player.SetGravity(RB.gravityScale += Time.deltaTime * 3f);
 
