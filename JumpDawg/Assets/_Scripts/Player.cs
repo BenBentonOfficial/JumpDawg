@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : Entity
 {
     public PlayerStateMachine StateMachine { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();

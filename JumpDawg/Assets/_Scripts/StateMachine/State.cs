@@ -22,7 +22,6 @@ public abstract class State<EState> where EState : Enum
     public abstract void EnterState();
     public abstract void ExitState();
     public abstract void UpdateState();
-    public abstract void PhysicsUpdate();
     public abstract EState GetNextState();
     public abstract void AnimationFinishTrigger();
 

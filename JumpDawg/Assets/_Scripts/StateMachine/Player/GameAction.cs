@@ -5,16 +5,20 @@ using UnityEngine.InputSystem;
 [Serializable]
 public class GameAction
 {
+    private InputManager inputManager;
     [SerializeField] private InputActionReference inputAction;
     public Action perform;
     public Action cancel;
     
-    public void Setup(float queueTime)
+    public void Setup(InputManager manager ,float queueTime)
     {
+        inputManager = manager;
         _queueTime = queueTime;
 
         inputAction.action.performed += PerformAction;
         inputAction.action.canceled += CancelAction;
+
+        perform += Queue;
     }
 
     public void PerformAction(InputAction.CallbackContext context)
@@ -35,8 +39,8 @@ public class GameAction
 
     public void Queue()
     {
-       _queued = true; 
-       InputManager.instance.SetInputConsumeTimer(_queueTime);
+        _queued = true; 
+       inputManager.SetInputConsumeTimer(_queueTime);
     }
 
     public void Consume() => _queued = false;

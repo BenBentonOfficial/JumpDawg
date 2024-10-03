@@ -23,11 +23,6 @@ public class PlayerMoveState : PlayerState
         player.CheckFlip();
     }
 
-    public override void PhysicsUpdate()
-    {
-        
-    }
-
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
         if (InputManager.MovementInput().magnitude <= 0)

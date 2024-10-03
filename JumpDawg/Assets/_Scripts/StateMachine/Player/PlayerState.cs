@@ -26,11 +26,6 @@ public class PlayerState : State<PlayerStateMachine.EPlayerState>
         //throw new System.NotImplementedException();
     }
 
-    public override void PhysicsUpdate()
-    {
-        //throw new System.NotImplementedException();
-    }
-
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
         throw new System.NotImplementedException();

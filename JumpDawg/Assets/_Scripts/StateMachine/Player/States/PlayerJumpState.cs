@@ -6,14 +6,14 @@ public class PlayerJumpState : PlayerState
     {
     }
 
-    private bool jumpEnd = false;
+    private bool jumpCanceled = false;
 
-    private void EndJump() => jumpEnd = true;
+    private void EndJump() => jumpCanceled = true;
 
     public override void EnterState()
     {
         base.EnterState();
-        jumpEnd = false;
+        jumpCanceled = false;
         InputManager.instance.Jump.cancel += EndJump;
         InputManager.instance.Jump.Consume();
         
@@ -23,30 +23,25 @@ public class PlayerJumpState : PlayerState
     public override void ExitState()
     {
         base.ExitState();
+        player.SetVelocityY(0);
+        InputManager.instance.Jump.cancel -= EndJump;
     }
 
     public override void UpdateState()
     {
+       base.UpdateState();
        
-    }
-
-    public override void PhysicsUpdate()
-    {
-        
+       player.SetVelocityX(InputManager.MovementInput().x * player.MoveSpeed * 0.8f);
+       player.SetGravity(RB.gravityScale += Time.deltaTime * 5f);
+       
+       player.CheckFlip();
     }
 
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
-        if (player.touchingGround)
-            return PlayerStateMachine.EPlayerState.Idle;
-        
-        
+        if (player.Velocity().y <= 0 || jumpCanceled)
+            return PlayerStateMachine.EPlayerState.Fall;
 
         return StateKey;
-    }
-
-    public override void AnimationFinishTrigger()
-    {
-        throw new System.NotImplementedException();
     }
 }

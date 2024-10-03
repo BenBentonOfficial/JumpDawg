@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 1325694389}
   - component: {fileID: 1325694388}
   - component: {fileID: 1325694387}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2699,7 +2699,7 @@ GameObject:
   - component: {fileID: 1872943819}
   - component: {fileID: 1872943818}
   - component: {fileID: 1872943817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29216,7 +29216,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 30c2e54e53ea448ed82873f1d53f0ed5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -29226,7 +29226,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2086275382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29239,11 +29239,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee8901c2a726e549a96319e0a1ffde1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 12
+  jumpForce: 18
   groundCheckDistance: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  gravity: 0
+  moveSpeed: 15
 --- !u!70 &2086275383
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -23,8 +23,8 @@ public class InputManager : MonoBehaviour
 
         instance = this;
         
-        Jump.Setup(0.1f);
-        Dash.Setup(0.1f);
+        Jump.Setup(this, 0.1f);
+        Dash.Setup(this, 0.1f);
     }
 
     private void Update()
