@@ -12,6 +12,7 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
    protected EState NextStateKey;
 
    protected bool IsTransitioningState = false;
+   public Action<State<EState>> StateChange;
 
    private void Start()
    {
@@ -39,6 +40,7 @@ public abstract class StateMachine<EState> : MonoBehaviour where EState : Enum
       CurrentState.ExitState();
       CurrentState = States[stateKey];
       CurrentState.EnterState();
+      StateChange?.Invoke(CurrentState);
       IsTransitioningState = false;
    }
 

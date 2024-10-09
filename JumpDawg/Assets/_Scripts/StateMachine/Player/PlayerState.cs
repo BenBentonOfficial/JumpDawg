@@ -23,7 +23,10 @@ public class PlayerState : State<PlayerStateMachine.EPlayerState>
 
     public override void UpdateState()
     {
-        //throw new System.NotImplementedException();
+        if (stateTimer > 0)
+        {
+            stateTimer -= Time.deltaTime;
+        }
     }
 
     public override PlayerStateMachine.EPlayerState GetNextState()

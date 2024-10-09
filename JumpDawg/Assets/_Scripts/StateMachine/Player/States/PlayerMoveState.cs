@@ -19,15 +19,17 @@ public class PlayerMoveState : PlayerState
 
     public override void UpdateState()
     {
-        player.SetVelocityX(InputManager.MovementInput() * 10);
+        player.SetVelocityX(InputManager.MovementInput().x * player.MoveSpeed);
         player.CheckFlip();
     }
 
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
-        if (InputManager.MovementInput().Equals(0))
+        if (InputManager.MovementInput().x.Equals(0))
             return PlayerStateMachine.EPlayerState.Idle;
         
+        if (player.OnPlatform() && InputManager.MovementInput().y < 0 && InputManager.instance.Jump.Queued)
+            return PlayerStateMachine.EPlayerState.PlatformFall;
 
         if (InputManager.instance.Jump.Queued)
             return PlayerStateMachine.EPlayerState.Jump;

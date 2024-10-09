@@ -19,8 +19,11 @@ public class PlayerIdleState : PlayerState
     
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
-        if (Mathf.Abs(InputManager.MovementInput()) > 0)
+        if (Mathf.Abs(InputManager.MovementInput().x) > 0)
             return PlayerStateMachine.EPlayerState.Move;
+        
+        if (player.OnPlatform() && InputManager.MovementInput().y < 0 && InputManager.instance.Jump.Queued)
+            return PlayerStateMachine.EPlayerState.PlatformFall;
 
         if (InputManager.instance.Jump.Queued)
             return PlayerStateMachine.EPlayerState.Jump;

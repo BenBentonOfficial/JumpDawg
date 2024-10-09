@@ -31,7 +31,7 @@ public class PlayerJumpState : PlayerState
     {
        base.UpdateState();
        
-       player.SetVelocityX(InputManager.MovementInput() * player.MoveSpeed * 0.8f);
+       player.SetVelocityX(InputManager.MovementInput().x * player.MoveSpeed * 0.8f);
        player.SetGravity(RB.gravityScale += Time.deltaTime * 5f);
        
        player.CheckFlip();

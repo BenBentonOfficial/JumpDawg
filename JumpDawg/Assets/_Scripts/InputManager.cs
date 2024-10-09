@@ -38,7 +38,7 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public static float MovementInput() => instance.movement.action.ReadValue<float>();
+    public static Vector2 MovementInput() => instance.movement.action.ReadValue<Vector2>();
 
     public void SetInputConsumeTimer(float time) => inputConsumeTimer = time;
     
