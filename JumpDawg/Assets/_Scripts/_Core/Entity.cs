@@ -29,7 +29,6 @@ public class Entity : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _collider = GetComponent<Collider2D>();
-        groundLayer = LayerMask.GetMask("Ground");
         gravity = _rb.gravityScale;
     }
 

@@ -39,7 +39,7 @@ public class PlayerJumpState : PlayerState
 
     public override PlayerStateMachine.EPlayerState GetNextState()
     {
-        if (player.Velocity().y <= 0 || jumpCanceled)
+        if (player.Velocity().y <= 0 )
             return PlayerStateMachine.EPlayerState.Fall;
 
         return StateKey;
